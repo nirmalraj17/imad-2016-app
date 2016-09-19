@@ -6,9 +6,9 @@ var app = express();
 app.use(morgan('combined'));
 
 var articleOne = {
-    title: 'Article One | Nirmal Raj'
-    heading: 'Article One'
-    date: 'September 10'
+    title: 'Article One | Nirmal Raj',
+    heading: 'Article One',
+    date: 'September 10',
     content: `
     <p>
         This is my first paragrah. This is the content for my first article. This is the content for my first article. This is the content for my first article. This is the content for my first article. This is the content for my first article. First paragraph ends here. 
