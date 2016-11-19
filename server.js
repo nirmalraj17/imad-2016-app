@@ -135,7 +135,7 @@ app.post('/login', function(req,res) {
                 res.send(403).send('username or password is invalid');
             else {
                 var dbString = result.rows[0].password;
-                var salt = dbStrin.split('$')[2];
+                var salt = dbString.split('$')[2];
                 var hashedPassoword = hash(password, salt);
                     if (hashedPassoword ===dbString){
                         req.session.auth  = {userId: result.rows[0].id};
