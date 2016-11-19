@@ -3,22 +3,8 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/ui/style.css">
     <script src="/ui/main.js"></script>
-    <script src="/ui/scripts.js"></script>
+    
 </head>
-function visible(id) {
-    document.getElementById(id).style.visibility = "visible" ;
-    document.getElementById("signin").style.display ="block";
-    if (id == "signin"){
-        document.getElementById("signup").style.visibility = "hidden" ;
-    } else {
-        document.getElementById("signin").style.display = "none" ;
-    }
-}
-
-function invisible(){
-    document.getElementById("signin").style.visibility = "hidden" ;
-    document.getElementById("signup").style.visibility = "hidden" ;
-}
 <ul>
   <li><a href="#home" onclick="invisible()">Home</a></li>
   <div style="float:right">
