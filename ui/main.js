@@ -11,7 +11,8 @@ submit.onclick = function(){
 			} else if (request.status === 500) {
 			    alert('Something went wrong!!');
 			}
-		} 	
+		}
+		delete username, password;
 	};
 	var username = document.getElementById('username').value;
 	var password = document.getElementById('password').value;
@@ -37,11 +38,12 @@ submit.onclick = function(){
 			} else if (request.status === 500) {
 			    alert('Something went wrong!!');
 			}
-		} 	
+		}
+		delete username, email, password;
 	};
-	var username = document.getElementById('username').value;
+	var username = document.getElementById('username1').value;
 	var email = document.getElementById('email').value;
-	var password = document.getElementById('password').value;
+	var password = document.getElementById('password1').value;
 	
 	console.log(username);
 	console.log(email);
