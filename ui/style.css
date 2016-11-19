@@ -28,7 +28,7 @@
 #right { padding: 10px 5px;float:right;}
 
 body {
-    background-color: white;
+    background-image: url('/ui/image.jpg');
     overflow-x: hidden;
     margin-top:0;
     margin-left:0;
