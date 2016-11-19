@@ -12,7 +12,7 @@ submit.onclick = function(){
 			    alert('Something went wrong!!');
 			}
 		}
-		delete username, password;
+// 		delete username, password;
 	};
 	var username = document.getElementById('username').value;
 	var password = document.getElementById('password').value;
@@ -39,7 +39,7 @@ submit.onclick = function(){
 			    alert('Something went wrong!!');
 			}
 		}
-		delete username, email, password;
+// 		delete username, email, password;
 	};
 	var username = document.getElementById('username1').value;
 	var email = document.getElementById('email').value;
