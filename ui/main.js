@@ -24,24 +24,24 @@ submit.onclick = function(){
 	request.send(JSON.stringify({username: username, password: password}));
 };
 
-var submit =document.getElementById('invisible');
-submit.onclick = function(){
-    document.getElementById("signin").style.visibility = "hidden" ;
-    document.getElementById("signup").style.visibility = "hidden" ;
-};
+// var submit =document.getElementById('invisible');
+// submit.onclick = function(){
+//     document.getElementById("signin").style.visibility = "hidden" ;
+//     document.getElementById("signup").style.visibility = "hidden" ;
+// };
 
 
-var submit =document.getElementById('sign_in');
-submit.onclick = function(){
-    document.getElementById("signin").style.visibility = "visible" ;
-    document.getElementById("signup").style.visibility = "hidden" ;
-};
+// var submit =document.getElementById('sign_in');
+// submit.onclick = function(){
+//     document.getElementById("signin").style.visibility = "visible" ;
+//     document.getElementById("signup").style.visibility = "hidden" ;
+// };
 
-var submit =document.getElementById('sign_up');
-submit.onclick = function(){
-    document.getElementById("signup").style.visibility = "visible" ;
-    document.getElementById("signin").style.display = "hidden" ;
-};
+// var submit =document.getElementById('sign_up');
+// submit.onclick = function(){
+//     document.getElementById("signup").style.visibility = "visible" ;
+//     document.getElementById("signin").style.display = "hidden" ;
+// };
 
 
 var submit =document.getElementById('signUp_button');
