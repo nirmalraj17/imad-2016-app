@@ -24,8 +24,8 @@
 }
 
 #wrapper {overflow:auto;}
-#left { float:left;}
-#right { float:right;}
+#left { float:left; margin-left:10;}
+#right { float:right; margin-right:10;}
 
 body {
     background-color: white;
