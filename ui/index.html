@@ -1,29 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="server.js"></script>
-</head>
-<ul>
-  <li><a href="#home" onclick="invisible()">Home</a></li>
-  <div style="float:right">
-	  <button class="btn_nav btn-primary" id="sign_in" onclick="visible('signin')">Sign In</button>
-	  <button class="btn_nav btn-primary" id="sign_up" onclick="visible('signup')">Sign up</button>    
-  </div>
-</ul>
-	<body onload="invisible()">
-		<!--<br>-->
-		<div id="signin" class="signin">
-			<input class="form-control input" type="text" id="userid" placeholder="User Name"> <br>
-			<input class="form-control input" type="password" id="psw" placeholder="Password"> <br> 
-			<button class="btn btn-primary" onclick="myFunction()">Sign In</button>
-		</div>
-		<div id="signup" class="signup">
-			<input class="form-control input" type="text" id="userid" placeholder="User Name"> <br>
-			<input class="form-control input" type="text" id="email" placeholder="Email"> <br>
-			<input class="form-control input" type="password" id="psw" placeholder="Password"> <br>
-			<button class="btn btn-primary" onclick="myFunction()">Sign Up</button>
-		</div>
-	</body>
-	
+    <head>
+        <link href="/ui/style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="center">
+                <img id="madi" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAkEAAAAJGFlMzBiNmEwLTUxZTQtNDJhNS05YjEyLTI0NTFiZjEwNWY3MA.jpg" class="img-medium"/>
+            </div>
+            <h3>
+                Personal
+            </h3>
+            <div>
+                Hi I am Nirmal Raj
+            </div>
+            <hr/>
+            <h3>
+                Professional
+            </h3>    
+            <div>
+                I work as freelancer.
+            </div>
+            <hr/>
+            <h3>Login to unlock awesome features</h3>
+            <div class="footer">
+                <input type="text" id="username" placeholder="username" />
+                <input type="password" id="password" />
+                <input type="Submit" id="submit_btn" />
+            </div>
+        </div>
+        <script type="text/javascript" src="/ui/main.js">
+        </script>
+    </body>
 </html>
