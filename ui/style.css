@@ -24,8 +24,8 @@
 }
 
 #wrapper {overflow:auto;}
-#left { padding: 10px 10px;float:left;}
-#right { padding: 10px 10px;float:right;}
+#left { padding: 10px 5px;float:left;}
+#right { padding: 10px 5px;float:right;}
 
 body {
     background-color: white;
