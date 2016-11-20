@@ -33,7 +33,7 @@ body {
     margin-top:0;
     margin-left:0;
     margin-right:0;
-    width:100%;
+    background-size: cover;
     }
     
 li a {
