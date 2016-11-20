@@ -90,6 +90,10 @@ function createTemplate(data){
                 <div>
                     ${content}
                 </div>
+				<div id="comments">
+                <center>Loading...</center>
+              </div>
+			  <script type="text/javascript" src="/ui/article.js"></script>
             </div>
         </body>    
     </html>
@@ -153,7 +157,13 @@ app.post('/login', function(req,res) {
 
 app.get('/check-login', function (req,res){
    if (req.session && req.session.auth && req.session.auth.userId) {
-       res.send('You are logged in '+ req.session.auth.userId.toString());
+       pool.query('SELECT * FROM "user" WHERE id = $1', [req.session.auth.userId], function (err, result) {
+           if (err) {
+              res.status(500).send(err.toString());
+           } else {
+              res.send(result.rows[0].username);    
+           }
+       });
    } else {
        res.send('You are not logged in');
    }
@@ -161,12 +171,12 @@ app.get('/check-login', function (req,res){
 
 app.get('/logout', function (req, res){
    delete req.session.auth;
-   res.send('Logged out');
+   res.send('<html><body>Logged out!<br/><br/><a href="/">Home</a></body></html>');
 });
 
 var pool = new Pool(config);
 app.get('/article', function (req,res) {
-    pool.query("select * from article", function (err, result){
+    pool.query("select * from article ORDER BY date DESC", function (err, result){
        if (err){
            res.status(500).send(err.toString());
        } else {
@@ -175,8 +185,43 @@ app.get('/article', function (req,res) {
     });
 });
 
+app.get('/get-comments/:articleName', function (req, res) {
+   pool.query('SELECT comment.*, "user".username FROM article, comment, "user" WHERE article.title = $1 AND article.id = comment.article_id AND comment.user_id = "user".id ORDER BY comment.timestamp DESC', [req.params.articleName], function (err, result) {
+      if (err) {
+          res.status(500).send(err.toString());
+      } else {
+          res.send(JSON.stringify(result.rows));
+      }
+   });
+});
 
-
+app.post('/submit-comment/:articleName', function (req, res) {
+    if (req.session && req.session.auth && req.session.auth.userId) {
+        pool.query('SELECT * from article where title = $1', [req.params.articleName], function (err, result) {
+            if (err) {
+                res.status(500).send(err.toString());
+            } else {
+                if (result.rows.length === 0) {
+                    res.status(400).send('Article not found');
+                } else {
+                    var articleId = result.rows[0].id;
+                    pool.query(
+                        "INSERT INTO comment (comment, article_id, user_id) VALUES ($1, $2, $3)",
+                        [req.body.comment, articleId, req.session.auth.userId],
+                        function (err, result) {
+                            if (err) {
+                                res.status(500).send(err.toString());
+                            } else {
+                                res.status(200).send('Comment inserted!')
+                            }
+                        });
+                }
+            }
+       });     
+    } else {
+        res.status(403).send('Only logged in users can comment');
+    }
+});
 
 var counter = 0;
 app.get('/counter', function(req,res){

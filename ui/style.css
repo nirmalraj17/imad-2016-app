@@ -17,7 +17,7 @@
 .container{
     max-width: 800px;
     margin: 0 auto;
-    color: #44c39b;
+    color: #681275;
     font-family: sans-serief;
     padding-left: 20px;
     padding-right: 20px;
@@ -29,6 +29,8 @@
 
 body {
     background-image: url('http://www.desktopwallpaperhd.net/wallpapers/11/6/beautiful-sphere-website-backgrounds-different-113494.jpg');
+	background-color:#C0C0C0;
+	background-blend-mode: darken;
     overflow-x: hidden;
     margin-top:0;
     margin-left:0;

@@ -6,6 +6,7 @@
     function visible(id) {
         document.getElementById(id).style.visibility = "visible" ;
         document.getElementById("signin").style.display ="block";
+		document.getElementById("profile").style.display = "none" ;
         if (id == "signin"){
             document.getElementById("signup").style.visibility = "hidden" ;
         } else {
@@ -16,6 +17,7 @@
     function invisible(){
         document.getElementById("signin").style.visibility = "hidden" ;
         document.getElementById("signup").style.visibility = "hidden" ;
+		document.getElementById("profile").style.display = "block" ;
     }
     </script>
 </head>
@@ -40,14 +42,27 @@
 			<input class="form-control input" type="password" id="password1" placeholder="Password"> <br>
 			<button class="btn btn-primary" id="signUp_button">Sign Up</button>
 		</div>
-		<div id="wrapper">
-            <div id="left">
-                left links go here
+		<div class="container" id="profile">
+            <div class="center">
+                <img id="madi" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAkEAAAAJGFlMzBiNmEwLTUxZTQtNDJhNS05YjEyLTI0NTFiZjEwNWY3MA.jpg" class="img-medium"/>
             </div>
-            <div id="right">
-                right links go here
+            <h3>
+                Personal
+            </h3>
+            <div>
+                Hi I am Nirmal Raj. An enthusiastic candidate who explore different areas of technology and gains knowledge and always upto date.
+				Even though not from a computer science background still exploring the programming world and learning new technologies.
+				I love science fiction movies and cartoons!!
             </div>
-        </div>
+            <hr/>
+            <h3>
+                Professional
+            </h3>    
+            <div>
+                I am working as a Linux system administrator. Also working as a part time android developer. Recently my first app is released on playstore.
+				In the world of WebApp development, this is my first step. Always researched my doubts, understand it and will try to implement.
+            </div>
+		</div>
 	</body>
 	<script src="/ui/main.js"></script>
 </html>
