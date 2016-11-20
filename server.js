@@ -23,43 +23,6 @@ app.use(session({
     ccookie: { maxAge: 1000 * 60 * 60 * 24 * 30}
 }));
 
-
-var articles = {
-    'article-one': {
-        title: 'Article One | Nirmal Raj',
-        heading: 'Article One',
-        date: 'September 10',
-        content: `
-        <p>
-            This is my first paragrah. This is the content for my first article. This is the content for my first article. This is the content for my first article. This is the content for my first article. This is the content for my first article. First paragraph ends here. 
-        </p>
-        <p>
-            This is my second paragrah. This is the content for my first article. This is the content for my first article. This is the content for my first article. This is the content for my first article. This is the content for my first article. Second paragraph ends here.
-        </p>
-        <p>
-            This is my third paragrah. This is the content for my first article. This is the content for my first article. This is the content for my first article. This is the content for my first article. This is the content for my first article. Third paragraph ends here.
-        </p>`
-    },
-    'article-two': {
-        title: 'Article Two | Nirmal Raj',
-        heading: 'Article Two',
-        date: 'September 15',
-        content: `
-        <p>
-            This is my first paragrah. This is the content for my second article. This is the content for my second article. This is the content for my second article. This is the content for my second article. This is the content for my second article. This is the content for my second article. paragraph ends here
-        </p>`
-    },
-    'article-three': {
-        title: 'Article Three | Nirmal Raj',
-        heading: 'Article Three',
-        date: 'September 19',
-        content: `
-        <p>
-            This is my first paragrah. This is the content for my third article. 
-        </p>`
-    }
-};
-
 function createTemplate(data){
     var title = data.title;
     var heading = data.heading;
