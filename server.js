@@ -153,20 +153,20 @@ app.post('/login', function(req,res) {
 
 app.get('/check-login', function (req,res){
    if (req.session && req.session.auth && req.session.auth.userId) {
-       req.send('You are logged in '+ req.session.auth.userId.toString());
+       res.send('You are logged in '+ req.session.auth.userId.toString());
    } else {
-       req.send('You are not logged in');
+       res.send('You are not logged in');
    }
 });
 
 app.get('/logout', function (req, res){
    delete req.session.auth;
-   req.send('Logged out');
+   res.send('Logged out');
 });
 
 var pool = new Pool(config);
-app.get('/test-db', function (req,res) {
-    pool.query("select * from test", function (err, result){
+app.get('/article', function (req,res) {
+    pool.query("select * from article", function (err, result){
        if (err){
            res.status(500).send(err.toString());
        } else {
@@ -174,6 +174,21 @@ app.get('/test-db', function (req,res) {
        }
     });
 });
+
+app.post('/create-article', function(req,res) {
+    var title = req.body.title;
+    var heading = req.body.heading;
+    var date = req.body.date;
+    var content = req.body.content;
+    var id = req.session.auth.userId;
+    pool.query('INSERT INTO "article" (title, heading, date, content, id) VALUES ($1,$2,$3,$4,$5)', [title,heading,date,content,id], function(err, result){
+       if (err){
+           res.status(500).send(err.toString()); 
+       } else 
+            res.send('Article created successfully' + title);
+     });
+});
+
 
 var counter = 0;
 app.get('/counter', function(req,res){
