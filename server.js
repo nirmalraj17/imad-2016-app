@@ -191,12 +191,6 @@ app.post('/submit-comment/:articleName', function (req, res) {
     }
 });
 
-var counter = 0;
-app.get('/counter', function(req,res){
-  counter = counter + 1;
-  res.send(counter.toString());
-});
-
 app.get('/articles/:articleName', function(req,res){
  
   pool.query("select * from article where title = $1", [req.params.articleName] , function (err, result){
