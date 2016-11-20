@@ -175,19 +175,7 @@ app.get('/article', function (req,res) {
     });
 });
 
-app.post('/create-article', function(req,res) {
-    var title = req.body.title;
-    var heading = req.body.heading;
-    var date = req.body.date;
-    var content = req.body.content;
-    var id = req.session.auth.userId;
-    pool.query('INSERT INTO "article" (title, heading, date, content, id) VALUES ($1,$2,$3,$4,$5)', [title,heading,date,content,id], function(err, result){
-       if (err){
-           res.status(500).send(err.toString()); 
-       } else 
-            res.send('Article created successfully' + title);
-     });
-});
+
 
 
 var counter = 0;
