@@ -69,8 +69,14 @@ function loadLogin () {
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
         if (request.readyState === XMLHttpRequest.DONE) {
+			var com = "You are not logged in";
             if (request.status === 200) {
-                loadCommentForm(this.responseText);
+				var matching = this.responseText;
+				if (com.match(matching)){
+					console.log(this.responseText);
+				} else {
+					loadCommentForm(this.responseText);				
+				}                
             }
         }
     };
