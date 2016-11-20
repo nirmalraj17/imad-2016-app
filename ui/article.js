@@ -27,9 +27,8 @@ function loadCommentForm () {
        
         var comment = document.getElementById('comment_text').value;
 
-        request.open('POST', 'http://nirmalraj17.imad.hasura-app.io/submit-comment/' + currentArticleTitle, true);
+        request.open('POST', '/submit-comment/' + currentArticleTitle, true);
 		request.setRequestHeader('Content-Type', 'application/json');
-		request.setRequestHeader('Access-Control-Allow-Origin', '*');
         request.send(JSON.stringify({comment: comment}));  
         submit.value = 'Submitting...';
     };
@@ -60,7 +59,7 @@ function loadComments () {
         }
     };
     
-    request.open('GET', 'http://nirmalraj17.imad.hasura-app.io/get-comments/' + currentArticleTitle, true);
+    request.open('GET', '/get-comments/' + currentArticleTitle, true);
 	request.setRequestHeader('Access-Control-Allow-Origin', '*');
     request.send(null);
 }
@@ -76,8 +75,7 @@ function loadLogin () {
         }
     };
     
-    request.open('GET', 'http://nirmalraj17.imad.hasura-app.io/check-login', true);
-	request.setRequestHeader('Access-Control-Allow-Origin', '*');
+    request.open('GET', '/check-login', true);
     request.send(null);
 }
 

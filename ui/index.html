@@ -7,6 +7,8 @@
         document.getElementById(id).style.visibility = "visible" ;
         document.getElementById("signin").style.display ="block";
 		document.getElementById("profile").style.display = "none" ;
+		document.getElementById("articles").style.display = "none" ;
+		document.getElementById("articles_heading").style.display = "none" ;
         if (id == "signin"){
             document.getElementById("signup").style.visibility = "hidden" ;
         } else {
@@ -18,12 +20,44 @@
         document.getElementById("signin").style.visibility = "hidden" ;
         document.getElementById("signup").style.visibility = "hidden" ;
 		document.getElementById("profile").style.display = "block" ;
+document.getElementById("login_area").style.display = "none" ;
+		loadLogin();
     }
+	function loadLogin () {
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState === XMLHttpRequest.DONE) {
+           var com = "You are not logged in";
+            if (request.status === 200) {
+				var matching = this.responseText;
+				if (com.match(matching)){
+					console.log(this.responseText);
+					document.getElementById("sign_up").style.visibility = "visible" ;
+					document.getElementById("sign_in").style.visibility = "visible" ;
+					document.getElementById("logout").style.display = "none" ;
+				} else {
+					loadLoggedInUser(this.responseText);	
+					document.getElementById("articles_heading").style.display = "block" ;
+					document.getElementById("articles").style.display = "block" ;
+					document.getElementById("login_area").style.display = "block" ;
+					document.getElementById("sign_up").style.visibility = "hidden" ;
+					document.getElementById("sign_in").style.visibility = "hidden" ;
+					document.getElementById("logout").style.display = "block" ;
+				}
+            }
+        }
+    };
+    
+    request.open('GET', '/check-login', true);
+	//request.setRequestHeader( 'Access-Control-Allow-Origin', '*');
+    request.send(null);
+	}
     </script>
 </head>
 <ul>
   <li><a href="#home" onclick="invisible()">Home</a></li>
   <div style="float:right">
+<button class="btn_nav btn-primary" id="logout" onclick="window.location.href='/logout'">Log out</button>
 	  <button class="btn_nav btn-primary" id="sign_in" onclick="visible('signin')">Sign In</button>
 	  <button class="btn_nav btn-primary" id="sign_up" onclick="visible('signup')">Sign up</button>    
   </div>
@@ -63,6 +97,16 @@
 				In the world of WebApp development, this is my first step. Always researched my doubts, understand it and will try to implement.
             </div>
 		</div>
+	<div id="login_area">
+					<center>Loading login status...</center>
+				</div>
+			<div id="articles_heading">
+			<hr/>
+			<h3>Articles</h3>
+			</div>
+			<div id="articles">
+				<center>Loading articles...</center>
+			</div>
 	</body>
 	<script src="/ui/main.js"></script>
 </html>

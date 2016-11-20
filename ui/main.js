@@ -7,9 +7,11 @@ submit.onclick = function(){
 				console.log('user loged in');
 				alert('Logged in successfully');
 			} else if (request.status === 403) {
-			    alert('Incorrect user naeme or credentials');
+			    alert('Incorrect user name or credentials');
 			} else if (request.status === 500) {
 			    alert('Something went wrong!!');
+			}else {
+				alert('Something went wrong!!');
 			}
 		} 
 		loadLogin ();
@@ -20,9 +22,8 @@ submit.onclick = function(){
 	console.log(username);
 	console.log(password);
 	
-	request.open('POST', 'http://nirmalraj17.imad.hasura-app.io/login' ,true);
+	request.open('POST', '/login' ,true);
 	request.setRequestHeader('Content-Type', 'application/json');
-	request.setRequestHeader( 'Access-Control-Allow-Origin', '*');
 	request.send(JSON.stringify({username: username, password: password}));
 };
 
@@ -33,11 +34,14 @@ submit.onclick = function(){
 		if (request.readyState === XMLHttpRequest.DONE){
 			if (request.status === 200){
 				console.log('Signup successful');
+document.getElementById("signup").style.visibility = "hidden" ;
 				alert('Signup successful. Please proceed to login');
 			} else if (request.status === 403) {
 			    alert('Already exists');
 			} else if (request.status === 500) {
 			    alert('Something went wrong!!');
+			} else {
+				alert('Something went wrong!!');
 			}
 		}
 	};
@@ -49,13 +53,14 @@ submit.onclick = function(){
 	console.log(email);
 	console.log(password);
 		
-	request.open('POST', 'http://nirmalraj17.imad.hasura-app.io/create-user' ,true);
+	request.open('POST', '/create-user' ,true);
 	request.setRequestHeader('Content-Type', 'application/json');
-	request.setRequestHeader( 'Access-Control-Allow-Origin', '*');
 	request.send(JSON.stringify({username: username, email: email, password: password}));
 };
 
 function loadLoggedInUser (username) {
+document.getElementById("signin").style.visibility = "hidden" ;
+	document.getElementById("login_area").style.display = "block" ;
     var loginArea = document.getElementById('login_area');
     loginArea.innerHTML = `
         <h3> Hi <i>${username}</i></h3>
@@ -68,16 +73,30 @@ function loadLogin () {
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
         if (request.readyState === XMLHttpRequest.DONE) {
+var com = "You are not logged in";
             if (request.status === 200) {
-                loadLoggedInUser(this.responseText);
-            } else {
-                loadLoginForm();
+				var matching = this.responseText;
+				if (com.match(matching)){
+					console.log(this.responseText);
+
+
+					document.getElementById("sign_up").style.visibility = "visible" ;
+					document.getElementById("sign_in").style.visibility = "visible" ;
+					document.getElementById("logout").style.display = "none" ;
+				} else {
+					loadLoggedInUser(this.responseText);	
+					document.getElementById("articles_heading").style.display = "block" ;
+					document.getElementById("articles").style.display = "block" ;
+					document.getElementById("login_area").style.display = "block" ;
+					document.getElementById("sign_up").style.visibility = "hidden" ;
+					document.getElementById("sign_in").style.visibility = "hidden" ;
+					document.getElementById("logout").style.display = "block" ;
+				}
             }
         }
     };
     
-    request.open('GET', 'http://nirmalraj17.imad.hasura-app.io/check-login', true);
-	request.setRequestHeader( 'Access-Control-Allow-Origin', '*');
+    request.open('GET', '/check-login', true);	
     request.send(null);
 }
 
@@ -88,7 +107,7 @@ function loadArticles () {
         if (request.readyState === XMLHttpRequest.DONE) {
             var articles = document.getElementById('articles');
             if (request.status === 200) {
-                var content = '<ul>';
+                var content = '<ul class="left-style">';
                 var articleData = JSON.parse(this.responseText);
                 for (var i=0; i< articleData.length; i++) {
                     content += `<li>
@@ -103,7 +122,8 @@ function loadArticles () {
         }
     };
     
-    request.open('GET', 'http://nirmalraj17.imad.hasura-app.io/article', true);
-	request.setRequestHeader( 'Access-Control-Allow-Origin', '*');
+    request.open('GET', '/get-articles', true);
     request.send(null);
 }
+loadLogin();
+loadArticles();

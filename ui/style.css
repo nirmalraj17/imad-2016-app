@@ -28,7 +28,7 @@
 #right { padding: 10px 5px;float:right;}
 
 body {
-    background-image: url('http://www.desktopwallpaperhd.net/wallpapers/11/6/beautiful-sphere-website-backgrounds-different-113494.jpg');
+    background-image: url('/ui/image.jpg');
 	background-color:#C0C0C0;
 	background-blend-mode: darken;
     overflow-x: hidden;
@@ -61,6 +61,21 @@ ul {
     background-color: #333;
 }
 
+ul.left-style{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+	margin-left:50px;
+    float:left;
+}
+
+#left-style{
+    display: block;
+    width: 50%;
+    background-color: #dddddd;
+    padding: 5px 5px;
+    text-decoration: none;
+}
 li {
     float: left;
 }

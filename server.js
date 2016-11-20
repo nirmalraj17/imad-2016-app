@@ -12,7 +12,7 @@ var config = {
    database: "nirmalraj17",
    host: "db.imad.hasura-app.io",
    port: "5432",
-   password: process.env.DB_PASSWORD
+   password: "db-nirmalraj17-63764"
    
 };
 var app = express();
@@ -90,9 +90,14 @@ function createTemplate(data){
                 <div>
                     ${content}
                 </div>
-				<div id="comments">
-                <center>Loading...</center>
-              </div>
+				<hr/>
+						<h4>Comments</h4>
+					<div id="comment_form"></div>
+
+					<div id="comments">
+						<center>Loading comments...</center>
+					</div>
+				
 			  <script type="text/javascript" src="/ui/article.js"></script>
             </div>
         </body>    
@@ -175,7 +180,7 @@ app.get('/logout', function (req, res){
 });
 
 var pool = new Pool(config);
-app.get('/article', function (req,res) {
+app.get('/get-articles', function (req,res) {
     pool.query("select * from article ORDER BY date DESC", function (err, result){
        if (err){
            res.status(500).send(err.toString());
@@ -254,12 +259,12 @@ app.get('/ui/main.js', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'main.js'));
 });
 
-app.get('/ui/scripts.js', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'scripts.js'));
+app.get('/ui/article.js', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'article.js'));
 });
 
-app.get('/ui/madi.png', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
+app.get('/ui/image.jpg', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'image.jpg'));
 });
 
 
