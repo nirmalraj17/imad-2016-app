@@ -19,8 +19,11 @@ submit.onclick = function(){
 	var username = document.getElementById('username').value;
 	var password = document.getElementById('password').value;
 	
-	console.log(username);
-	console.log(password);
+	
+	if (username ==''|| password ==''){
+		alert("UserName/Password cannot be blank");
+		return;
+	}
 	
 	request.open('POST', '/login' ,true);
 	request.setRequestHeader('Content-Type', 'application/json');
@@ -49,9 +52,11 @@ document.getElementById("signup").style.visibility = "hidden" ;
 	var email = document.getElementById('email').value;
 	var password = document.getElementById('password1').value;
 	
-	console.log(username);
-	console.log(email);
-	console.log(password);
+	if (username ==''|| email =='' || password ==''){
+		alert("UserName/Email/Password cannot be blank");
+		return;
+	}
+		
 		
 	request.open('POST', '/create-user' ,true);
 	request.setRequestHeader('Content-Type', 'application/json');

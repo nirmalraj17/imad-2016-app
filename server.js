@@ -14,6 +14,7 @@ var config = {
    port: "5432",
    password: process.env.DB_PASSWORD
    
+   
 };
 var app = express();
 app.use(morgan('combined'));
